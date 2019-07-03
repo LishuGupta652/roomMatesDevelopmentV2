@@ -9,12 +9,26 @@ class home extends Component {
     state ={
         rooms : null
     }
+
+    //// Mounting the component usiing axios
+    // componentDidMount(){
+    //     axios.get('/rooms')
+    //         .then(res => {
+    //             console.log(res.data)
+    //             this.setState({
+    //                 rooms: res.data
+    //             })
+    //         })
+    //         .catch(err => console.log(err));
+    // }
     componentDidMount(){
-        axios.get('/rooms')
-            .then(res => {
-                console.log(res.data)
+            fetch('https://us-central1-hotelmanagement-684f5.cloudfunctions.net/api/rooms')
+            .then(data => data.json())
+            .then(data => data)
+            .then(data => {
+                console.log(data)
                 this.setState({
-                    rooms: res.data
+                    rooms: data
                 })
             })
             .catch(err => console.log(err));

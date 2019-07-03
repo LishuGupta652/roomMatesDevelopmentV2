@@ -29,7 +29,37 @@ body {
   animation: load 1s infinite;
   margin: auto;
 }
+.top-loader{
+  position: fixed;
+  bottom:0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 50vw;
+  height: 3px;
+  background-color: rgb(30, 164, 218);
+  animation: slide 2s infinite;
+}
 
+@keyframes slide{
+  0%{
+      width: 30vw;
+      opacity: 1;
+  }
+  20%{
+      background-color: yellow;
+  }
+  50%{
+      width: 100vw;
+      background-color: orangered;
+  }
+  80%{
+      background-color: rgba(8, 221, 43, 0.733);
+  }
+  100%{
+      width: 30vw;
+      opacity: 1;
+  }
+}
 @keyframes load{
   0%{
     width: 40px;

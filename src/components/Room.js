@@ -17,13 +17,14 @@ const styles = {
 
 class Room extends Component {
     render() {
-        const { classes, room: { desc, title, createdAt, image, price , rating}} = this.props
+        const { classes, room: { avaliable, desc, title, createdAt, image, price , rating}} = this.props
         
         return (
             <Card>
                 {/* <CardMedia image={userImage}  title="Room Image"/> */}
-                {/* <CardMedia image={userImage}  title="Room Image"/> */}
+                <CardMedia image={image}  title="Room Image"/>
                 <CardContent>
+                    <Typography variant="h4">{"Title : " +title}</Typography>
                     <Typography variant="body2" color="textSecondary">{"Data : " +createdAt}</Typography>
                     <Typography variant="body1">{"Room-description : " +  desc}</Typography>
                     <Typography variant="body1">{"Room-price : " +  price}</Typography>

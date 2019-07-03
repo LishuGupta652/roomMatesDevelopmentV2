@@ -36,7 +36,7 @@ class home extends Component {
     render() {
         let recentRoomsMarkup = this.state.rooms ? (
             this.state.rooms.map(room => <Room room={room} />)
-        ) : <div className="load-container"><p className="loading"></p></div>
+        ) : <div className="load-container"><p className="loading"></p><div className="top-loader"></div></div>
         return (
             <Grid container spacing={5}>
                 <Grid item sm={8} xs={12}>
@@ -44,7 +44,8 @@ class home extends Component {
                 </Grid>
                 
                 <Grid item sm={4} xs={12}>
-                    <p>Profile</p>
+                    <h3>Section For  User Profiles .....</h3>
+                    <div className="loading"></div>
                 </Grid>
             </Grid>
         )

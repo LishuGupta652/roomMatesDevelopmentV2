@@ -1,33 +1,46 @@
-.App {
-  text-align: center;
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+ 
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.container{
+  margin:80px auto 0 auto;
+  max-width: 1200px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-container{
+  margin:auto;
+  font-size: 24px;
+}
+.load-container{
+  width: 100%;
+  height: 50vh;
+  background-color: rgb(255, 254, 254);
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
+}
+.loading{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid rgb(14, 97, 145);
+  animation: load 1s infinite;
+  margin: auto;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes load{
+  0%{
+    width: 40px;
+    height: 40px;
   }
-  to {
-    transform: rotate(360deg);
+  50%{
+    width: 50px;
+    height: 50px;
+  }
+  100%{
+    width: 40px;
+    height: 40px;
   }
 }

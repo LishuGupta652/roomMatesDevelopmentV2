@@ -18,7 +18,6 @@ class home extends Component {
     componentDidMount(){
         axios.get('/rooms')
             .then(res => {
-                console.log(res.data)
                 this.setState({
                     rooms: res.data
                 })

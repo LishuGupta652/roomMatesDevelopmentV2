@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import '../App.css'
 
@@ -24,9 +24,7 @@ class home extends Component {
     componentDidMount(){
             fetch('https://us-central1-hotelmanagement-684f5.cloudfunctions.net/api/rooms')
             .then(data => data.json())
-            .then(data => data)
             .then(data => {
-                console.log(data)
                 this.setState({
                     rooms: data
                 })
@@ -35,7 +33,7 @@ class home extends Component {
     }
     render() {
         let recentRoomsMarkup = this.state.rooms ? (
-            this.state.rooms.map(room => <Room room={room} />)
+            this.state.rooms.map(room => <Room key={room.createdAt} room={room} />)
         ) : <div className="load-container"><p className="loading"></p><div className="top-loader"></div></div>
         return (
             <Grid container spacing={5}>

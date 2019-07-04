@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
-import Link from 'react-router-dom/Link'
+import {Link} from 'react-router-dom'
+
+// Dayjs
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'
 //MUI imports
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -15,17 +19,15 @@ const styles = {
         maxWidth: 800, 
         marginBottom: 20
     },
-    image: {
-        minWidth: 200,
-    },
-    content:{
-        padding: 25
+    image:{
+        objectFit: 'cover'
     }
 }
 
 class Room extends Component {
     render() {
-        const { classes, room: { avaliable, desc, title, createdAt, image, price , roomId, rating}} = this.props
+        dayjs.extend(relativeTime)
+        const { classes, room: {  desc, title, createdAt, image, price , roomId, rating}} = this.props
         
         return (
             // <Card className={classes.card}>
@@ -47,6 +49,7 @@ class Room extends Component {
                     height="140"
                     image={image}
                     title={title}
+                    className={classes.image}
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -61,13 +64,16 @@ class Room extends Component {
                     <Typography variant="body1">
                         {"Rating " +  rating}
                     </Typography>
+                    <Typography variant="body2">
+                        {"Posted : " +  dayjs(createdAt).fromNow()}
+                    </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary" component={Link} to={`/rooms/${title}`}>
+                    <Button size="small" color="primary"component={Link} to={`/buy/rooms/${roomId}/${title}`}>
                     Book Now
                     </Button>
-                    <Button size="small" color="primary" component={Link} to={`/buy/rooms/${roomId}/${title}`}>
+                    <Button size="small" color="primary" component={Link} to={`/rooms/${title}`}  >
                     Learn More
                     </Button>
                 </CardActions>

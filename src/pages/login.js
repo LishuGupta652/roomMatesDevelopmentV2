@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { fontSize } from '@material-ui/system';
 
 
 axios.defaults.baseURL = "https://us-central1-hotelmanagement-684f5.cloudfunctions.net/api"
@@ -30,6 +31,11 @@ const styles = {
     }, 
     button: {
         marginTop : 20
+    },
+    customError: {
+        color: 'red',
+        fontSize:'0.8rem',
+        marginTop: 15
     }
 };
 
@@ -113,6 +119,12 @@ class login extends Component {
                         value={this.state.password} 
                         onChange={this.handleChange} 
                         fullWidth />
+
+                        {errors.general && (
+                            <Typography variant="body2" className={classes.customError}>
+                                {errors.general}
+                            </Typography>
+                        )}
 
                         <Button type="submit" variant="contained" color="primary" className={classes.button} >Login</Button>
 

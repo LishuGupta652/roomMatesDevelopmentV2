@@ -1,36 +1,40 @@
 import React, { Component } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
+
+
 import Grid from '@material-ui/core/Grid'
 import '../App.css'
 
 import Room from '../components/Room'
+
+axios.defaults.baseURL = "https://us-central1-hotelmanagement-684f5.cloudfunctions.net/api"
 
 class home extends Component {
     state ={
         rooms : null
     }
 
-    //// Mounting the component usiing axios
-    // componentDidMount(){
-    //     axios.get('/rooms')
-    //         .then(res => {
-    //             console.log(res.data)
-    //             this.setState({
-    //                 rooms: res.data
-    //             })
-    //         })
-    //         .catch(err => console.log(err));
-    // }
+    // Mounting the component usiing axios
     componentDidMount(){
-            fetch('https://us-central1-hotelmanagement-684f5.cloudfunctions.net/api/rooms')
-            .then(data => data.json())
-            .then(data => {
+        axios.get('/rooms')
+            .then(res => {
+                console.log(res.data)
                 this.setState({
-                    rooms: data
+                    rooms: res.data
                 })
             })
             .catch(err => console.log(err));
     }
+    // componentDidMount(){
+    //         fetch('https://us-central1-hotelmanagement-684f5.cloudfunctions.net/api/rooms')
+    //         .then(data => data.json())
+    //         .then(data => {
+    //             this.setState({
+    //                 rooms: data
+    //             })
+    //         })
+    //         .catch(err => console.log(err));
+    // }
     render() {
         let recentRoomsMarkup = this.state.rooms ? (
             this.state.rooms.map(room => <Room key={room.createdAt} room={room} />)

@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types'
 import AppIcon from '../images/icon.png'
-
+import axios from 'axios';
 // MUI Stuff
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+
+
+axios.defaults.baseURL = "https://us-central1-hotelmanagement-684f5.cloudfunctions.net/api"
+
 
 const styles = {
     form: {
@@ -45,25 +49,27 @@ class login extends Component {
         event.preventDefault();
 
         this.setState({
-            loading:true
+            loading: true
         });
         const userData = {
-            email : this.state.email,
-            password : this.state.password
+            email: this.state.email,
+            password: this.state.password
         }
-
-        var data = new FormData();
-        data.append('json', JSON.stringify(userData))
-        fetch('https://us-central1-hotelmanagement-684f5.cloudfunctions.net/api/login', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: data
-        })
-            .then(data => data.json())
-            .then(data => {
-                console.log(data)
+        console.log(userData)
+        axios.post('/login', userData)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    loading: false
+                })
+                this.props.history.push('/')
+            })
+            .catch(err => {
+                console.log(err)
+                this.setState({
+                    errors : err.response.data,
+                    loading: false
+                })
             })
     }
     handleChange = (event) => {
